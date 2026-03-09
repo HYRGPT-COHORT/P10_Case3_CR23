@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.deloitte.test.BookingTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec <<< FAILURE!
+com.deloitte.test.BookingTest.testCreateBooking()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "com.deloitte.model.User.getUserId()" because "this.testUser" is null
+	at com.deloitte.test.BookingTest.testCreateBooking(BookingTest.java:59)
+

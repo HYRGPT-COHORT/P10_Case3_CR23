@@ -1,0 +1,94 @@
+USE flight_reservation_system;
+
+-- ---------- UsersTable---------------------
+
+CREATE TABLE users (
+
+user_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+email VARCHAR(100) NOT NULL UNIQUE,
+
+password VARCHAR(255) NOT NULL,
+
+role VARCHAR(20) NOT NULL
+
+);
+
+-- ---------- FlightTable---------------------
+
+CREATE TABLE flights (
+
+flight_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+flight_number VARCHAR(50) NOT NULL UNIQUE,
+
+source VARCHAR(100) NOT NULL,
+
+destination VARCHAR(100) NOT NULL,
+
+-- check with abu
+
+departure_time TIME NOT NULL,
+
+arrival_time TIME NOT NULL,
+
+capacity int DEFAULT 20 ,
+
+price_per_seat DOUBLE NOT NULL
+
+);
+
+-- ------------Bookings Table--------------------
+
+CREATE TABLE booking (
+
+  booking_id BIGINT NOT NULL AUTO_INCREMENT,
+
+  booking_date DATE NOT NULL,
+
+  journey_date DATE NOT NULL,
+
+  seats INT NOT NULL,
+
+  total_price DOUBLE NOT NULL,
+
+  status VARCHAR(50) NOT NULL,
+
+  flight_id BIGINT NOT NULL,
+
+  user_id BIGINT NOT NULL,
+
+  PRIMARY KEY (booking_id),
+ 
+  FOREIGN KEY (flight_id) REFERENCES flights (flight_id),
+
+  FOREIGN KEY (user_id) REFERENCES users (user_id)
+
+);
+
+-- TICKET
+
+CREATE TABLE ticket (
+
+  pnr_no BIGINT NOT NULL,
+
+  passenger_name VARCHAR(50) NOT NULL,
+
+  gender VARCHAR(50) NOT NULL,
+
+  age INT NOT NULL,
+
+  journey_date DATE NOT NULL,
+
+  seat_no VARCHAR(20) NOT NULL,
+
+  booking_id BIGINT NOT NULL,
+
+  status VARCHAR(50) NOT NULL,
+
+  PRIMARY KEY (pnr_no),
+
+  FOREIGN KEY (booking_id) REFERENCES booking (booking_id)
+
+);
+ 

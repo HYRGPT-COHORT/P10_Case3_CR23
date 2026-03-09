@@ -1,0 +1,102 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body { background-color:#f0f4f8; font-family:'Segoe UI',sans-serif; }
+.container { max-width:900px; margin-top:50px; }
+.header { text-align:center; margin-bottom:40px; }
+.card { background:white; padding:30px; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.1); }
+.btn-logout { background:#e74c3c; color:white; border:none; padding:8px 16px; border-radius:5px; }
+.btn-logout:hover { background:#c0392b; }
+.table th, .table td { vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>User Dashboard</h1>
+        <p class="lead">Welcome, <strong>${username}</strong></p>
+    </div>
+
+    <div class="mb-4">
+        <a href="${contextPath}/user/myBookings" class="btn btn-primary me-2">My Bookings</a>
+        <a href="${contextPath}/user/myTickets" class="btn btn-success me-2">My Tickets</a>
+        <a href="${contextPath}/logout" class="btn btn-logout">Logout</a>
+    </div>
+
+    <div class="card mb-5 p-4">
+        <h4>Search Flights</h4>
+        <form action="${contextPath}/searchFlights" method="get" class="row g-3 mt-2">
+            <div class="col-md-4">
+                <label>Source</label>
+                <input type="text" name="source" class="form-control" placeholder="Enter Source" required>
+            </div>
+            <div class="col-md-4">
+                <label>Destination</label>
+                <input type="text" name="destination" class="form-control" placeholder="Enter Destination" required>
+            </div>
+            <div class="col-md-4 align-self-end">
+                <button type="submit" class="btn btn-primary w-100">Search Flights</button>
+            </div>
+        </form>
+    </div>
+
+    <c:if test="${not empty flights}">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+            <div>
+                <h4 class="mb-0">✈ Flight Search Results</h4>
+                <small>Select a flight to continue booking</small>
+            </div>
+            <span class="badge bg-light text-dark fs-6">
+                ${flights.size()} Flights
+            </span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Flight No</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                            <th>Departure</th>
+                            <th>Arrival</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="flight" items="${flights}">
+                            <tr>
+                                <td><strong>${flight.flightNumber}</strong></td>
+                                <td>${flight.source}</td>
+                                <td>${flight.destination}</td>
+                                <td>${flight.departureTime}</td>
+                                <td>${flight.arrivalTime}</td>
+                                <td class="fw-bold text-success">₹ ${flight.pricePerSeat}</td>
+                                <td>
+                                    <a href="${contextPath}/user/bookFlight?flightId=${flight.flightId}" class="btn btn-primary btn-sm">Book Now</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </c:if>
+
+</div>
+
+</body>
+</html>

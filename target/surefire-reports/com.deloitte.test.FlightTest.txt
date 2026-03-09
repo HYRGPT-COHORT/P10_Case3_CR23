@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.deloitte.test.FlightTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec <<< FAILURE!
+com.deloitte.test.FlightTest.testGetAllFlights()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "com.deloitte.service.FlightService.getAllFlights()" because "this.flightService" is null
+	at com.deloitte.test.FlightTest.testGetAllFlights(FlightTest.java:28)
+
+com.deloitte.test.FlightTest.testSearchFlights()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "com.deloitte.service.FlightService.searchFlights(String, String)" because "this.flightService" is null
+	at com.deloitte.test.FlightTest.testSearchFlights(FlightTest.java:37)
+
+com.deloitte.test.FlightTest.testFlightNumberUniqueness()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "com.deloitte.service.FlightService.isFlightNumberExists(String)" because "this.flightService" is null
+	at com.deloitte.test.FlightTest.testFlightNumberUniqueness(FlightTest.java:46)
+

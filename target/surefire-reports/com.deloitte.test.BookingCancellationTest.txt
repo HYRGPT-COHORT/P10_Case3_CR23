@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: com.deloitte.test.BookingCancellationTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.025 sec <<< FAILURE!
+com.deloitte.test.BookingCancellationTest.testGetUserBookings()  Time elapsed: 0.013 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "com.deloitte.service.BookingService.getUserBookings(java.lang.Long)" because "this.bookingService" is null
+	at com.deloitte.test.BookingCancellationTest.testGetUserBookings(BookingCancellationTest.java:27)
+
+com.deloitte.test.BookingCancellationTest.testBookingStatusUpdate()  Time elapsed: 0.011 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Booking update failed
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:135)
+	at com.deloitte.test.BookingCancellationTest.testBookingStatusUpdate(BookingCancellationTest.java:47)
+
